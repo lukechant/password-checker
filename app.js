@@ -14,9 +14,10 @@ let complexity = document.getElementById("complexity");
 
 //length
 passwordInput.addEventListener('input', function(event) {
-    console.log(event.target.value);
+    console.log(passwordInput.value);
     let lengthValue = 0;
-    let userInputLength = event.target.value.length;
+    // let userInputLength = event.target.value.length;
+    let userInputLength = passwordInput.value.length;
 
     if (userInputLength> 4 && userInputLength <= 8) {
         lengthValue = 20;
