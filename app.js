@@ -1,22 +1,11 @@
 const passwordInput = document.getElementById("password-input");
 console.log(passwordInput);
 const progressBar = document.getElementById("progress-bar");
-let complexity = document.getElementById("complexity");
+let strength = document.getElementById("strength");
 
-
-
-//random value for progress bar
-// document.addEventListener('input', function() {
-//     let randomValue = Math.floor(Math.random() * 100);
-//     console.log(randomValue);
-//     progressBar.value = randomValue;
-// });
-
-//length
-passwordInput.addEventListener('input', function(event) {
+export const passwordLengthCheck = function() {
     console.log(passwordInput.value);
     let lengthValue = 0;
-    // let userInputLength = event.target.value.length;
     let userInputLength = passwordInput.value.length;
 
     if (userInputLength> 4 && userInputLength <= 8) {
@@ -28,28 +17,29 @@ passwordInput.addEventListener('input', function(event) {
     } else if(userInputLength > 16) {
         lengthValue = 80;
     }
-
     //add 5 % value for uppercase, lowercase, number, other
-    
-
     progressBar.value = lengthValue;
-});
+}
 
-passwordInput.addEventListener('input', function(event) {
-    let complexWord = 'blorp';
-    let userInputLength = event.target.value.length;
+passwordInput.addEventListener('input', passwordLengthCheck);
+
+export const strengthAssessor = function() {
+    let describeStrength = 'Pretty bad';
+    let userInputLength = passwordInput.value.length;
 
     if (userInputLength> 4 && userInputLength <= 8) {
-        complexWord = 'weak';
+        describeStrength = 'Weak';
     } else if(userInputLength > 8 && userInputLength <= 12) {
-        complexWord = 'ok';
+        describeStrength = 'OK';
     } else if(userInputLength > 12 && userInputLength <= 16) {
-        complexWord = 'good';
+        describeStrength = 'Good';
     } else if(userInputLength > 16) {
-        complexWord = 'very good';
+        describeStrength = 'Very good';
     }
 
-    complexity.innerHTML = complexWord;
-});
+    strength.innerHTML = describeStrength;
+}
+
+passwordInput.addEventListener('input', strengthAssessor);
 
 //regex help https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
