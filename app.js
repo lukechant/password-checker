@@ -14,10 +14,12 @@ export const passwordLengthCheck = function() {
         lengthValue = 40;
     } else if(userInputLength > 12 && userInputLength <= 16) {
         lengthValue = 60;
-    } else if(userInputLength > 16) {
+    } else if(userInputLength > 16 &&userInputLength <=20) {
         lengthValue = 80;
+    } else if(userInputLength > 20) {
+        lengthValue = 1000;
     }
-    //add 5 % value for uppercase, lowercase, number, other
+    
     progressBar.value = lengthValue;
 }
 
@@ -33,13 +35,13 @@ export const strengthAssessor = function() {
         describeStrength = 'OK';
     } else if(userInputLength > 12 && userInputLength <= 16) {
         describeStrength = 'Good';
-    } else if(userInputLength > 16) {
+    } else if(userInputLength > 16 &&userInputLength <=20) {
         describeStrength = 'Very good';
+    } else if(userInputLength > 20) {
+        describeStrength = 'Excellent';
     }
 
     strength.innerHTML = describeStrength;
 }
 
 passwordInput.addEventListener('input', strengthAssessor);
-
-//regex help https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
