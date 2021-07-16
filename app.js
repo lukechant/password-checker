@@ -1,47 +1,57 @@
 const passwordInput = document.getElementById("password-input");
-console.log(passwordInput);
 const progressBar = document.getElementById("progress-bar");
 let strength = document.getElementById("strength");
 
-export const passwordLengthCheck = function() {
-    console.log(passwordInput.value);
-    let lengthValue = 0;
-    let userInputLength = passwordInput.value.length;
 
-    if (userInputLength> 4 && userInputLength <= 8) {
+
+export const passwordLengthCheck = function(inputLength) {
+    // console.log(passwordInput.value);
+    let lengthValue = 0;
+
+    if (inputLength> 4 && inputLength <= 8) {
         lengthValue = 20;
-    } else if(userInputLength > 8 && userInputLength <= 12) {
+    } else if(inputLength > 8 && inputLength <= 12) {
         lengthValue = 40;
-    } else if(userInputLength > 12 && userInputLength <= 16) {
+    } else if(inputLength > 12 && inputLength <= 16) {
         lengthValue = 60;
-    } else if(userInputLength > 16 &&userInputLength <=20) {
+    } else if(inputLength > 16 &&inputLength <=20) {
         lengthValue = 80;
-    } else if(userInputLength > 20) {
-        lengthValue = 1000;
+    } else if(inputLength > 20) {
+        lengthValue = 100;
     }
-    
-    progressBar.value = lengthValue;
+    // console.log(inputLength);
+    // // console.log(lengthValue);
+    // progressBar.value = lengthValue;
+    return lengthValue;
 }
 
-passwordInput.addEventListener('input', passwordLengthCheck);
 
-export const strengthAssessor = function() {
+export const strengthAssessor = function(inputLength) {
     let describeStrength = 'Pretty bad';
-    let userInputLength = passwordInput.value.length;
 
-    if (userInputLength> 4 && userInputLength <= 8) {
+    if (inputLength> 4 && inputLength <= 8) {
         describeStrength = 'Weak';
-    } else if(userInputLength > 8 && userInputLength <= 12) {
+    } else if(inputLength > 8 && inputLength <= 12) {
         describeStrength = 'OK';
-    } else if(userInputLength > 12 && userInputLength <= 16) {
+    } else if(inputLength > 12 && inputLength <= 16) {
         describeStrength = 'Good';
-    } else if(userInputLength > 16 &&userInputLength <=20) {
+    } else if(inputLength > 16 &&inputLength <=20) {
         describeStrength = 'Very good';
-    } else if(userInputLength > 20) {
+    } else if(inputLength > 20) {
         describeStrength = 'Excellent';
     }
 
     strength.innerHTML = describeStrength;
 }
 
-passwordInput.addEventListener('input', strengthAssessor);
+const updateDOM = function(newValue) {
+    progressBar.value = passwordLengthCheck(newValue);
+    
+    // strength.innerHTML =  strengthAssessor(newValue);
+    
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    passwordInput.addEventListener('input', () => updateDOM(passwordInput.value.length));
+    // passwordInput.addEventListener('input', () => strengthAssessor(passwordInput.value.length));
+});

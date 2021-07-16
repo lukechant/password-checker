@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
@@ -22,7 +23,6 @@
   },
   "homepage": "https://github.com/lukechant/password-checker#readme",
   "devDependencies": {
-    "testEnvironment": "jsdom",
     "@babel/preset-env": "^7.14.7",
     "jest": "^27.0.6"
   }
