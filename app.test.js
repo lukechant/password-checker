@@ -1,5 +1,6 @@
 import { it, expect } from '@jest/globals';
 import { passwordStrengthCheck } from './app';
+import { passwordVisibility } from './app';
 
 describe('password checker', () => {
     it('should return progressBarValue 40 when inputLength is 9', () => {

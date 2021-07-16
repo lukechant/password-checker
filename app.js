@@ -36,15 +36,12 @@ const updateDOM = function(inputLength) {
 function passwordVisibility(passwordInput) {
     if (passwordInput.type === "password") {
       passwordInput.type = "text";
-      showHideToggle = "Hide password"
+      showHideToggle.innerText = "Untick to hide password"
     } else {
       passwordInput.type = "password";
-      showHideToggle = "Show password"
+      showHideToggle.innerText = "Tick to show password"
     }
   };
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     passwordInput.addEventListener('input', () => updateDOM(passwordInput.value.length));
