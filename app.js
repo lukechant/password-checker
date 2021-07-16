@@ -2,32 +2,33 @@ const passwordInput = document.getElementById("password-input");
 const progressBar = document.getElementById("progress-bar");
 let strength = document.getElementById("strength");
 
-export const passwordLengthCheck = function(inputLength) {
-    let lengthValue = 0;
+export const passwordStrengthCheck = function(inputLength) {
+    let progressBarValue = 0;
     let describeStrength = 'Pretty bad';
 
     if (inputLength> 4 && inputLength <= 8) {
-        lengthValue = 20;
+        progressBarValue = 20;
         describeStrength = 'Weak';
     } else if(inputLength > 8 && inputLength <= 12) {
-        lengthValue = 40;
+        progressBarValue = 40;
         describeStrength = 'OK';
     } else if(inputLength > 12 && inputLength <= 16) {
-        lengthValue = 60;
+        progressBarValue = 60;
         describeStrength = 'Good';
     } else if(inputLength > 16 &&inputLength <=20) {
-        lengthValue = 80;
+        progressBarValue = 80;
         describeStrength = 'Very good';
     } else if(inputLength > 20) {
-        lengthValue = 100;
+        progressBarValue = 100;
         describeStrength = 'Excellent';
     }
-    return [lengthValue, describeStrength];
+    return [progressBarValue, describeStrength];
 }
 
-const updateDOM = function(newValue) {
-    progressBar.value = passwordLengthCheck(newValue)[0];
-    strength.innerHTML =  passwordLengthCheck(newValue)[1];
+const updateDOM = function(inputLength) {
+    const passwordStrengthArray = passwordStrengthCheck(inputLength);
+    progressBar.value = passwordStrengthArray[0];
+    strength.innerHTML = passwordStrengthArray[1];
 }
 
 document.addEventListener("DOMContentLoaded", () => {
