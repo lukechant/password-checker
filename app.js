@@ -1,6 +1,8 @@
 const passwordInput = document.getElementById("password-input");
 const progressBar = document.getElementById("progress-bar");
 let strength = document.getElementById("strength");
+let showHideToggle = document.getElementById("showHideToggle");
+const passwordCheckbox = document.getElementById("passwordCheckbox");
 
 export const passwordStrengthCheck = function(inputLength) {
     let progressBarValue = 0;
@@ -31,6 +33,21 @@ const updateDOM = function(inputLength) {
     strength.innerHTML = passwordStrengthArray[1];
 }
 
+function passwordVisibility(passwordInput) {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showHideToggle = "Hide password"
+    } else {
+      passwordInput.type = "password";
+      showHideToggle = "Show password"
+    }
+  };
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     passwordInput.addEventListener('input', () => updateDOM(passwordInput.value.length));
+    passwordCheckbox.addEventListener('click', () => passwordVisibility(passwordInput));
 });
+
